@@ -284,6 +284,7 @@ if args.AGR :
     save_model_path = "./saved_model/{}_AGR/{}_{}_{}_lr={}_epochs={}_AGR.pt".format(args.method,args.model,args.dataset,args.method,args.lr,args.epochs)
 else:
     save_model_path = "./saved_model/{}/{}_{}_{}_lr={}_epochs={}.pt".format(args.method,args.model,args.dataset,args.method,args.lr,args.epochs)
+    
 os.makedirs(os.path.dirname(save_model_path), exist_ok=True) 
 
 torch.save(Model.state_dict(),save_model_path)

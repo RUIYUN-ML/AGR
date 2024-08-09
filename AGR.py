@@ -1,6 +1,6 @@
 import torch
 
-class OGD():
+class AGR():
     def __init__(self) :
         pass
     def get_gradient(self,optim,loss,model):
