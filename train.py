@@ -32,6 +32,7 @@ parser.add_argument('--lr_stage', default=[100,150], help='Stage setting of lear
 parser.add_argument('--model', default='preactresnet', help='Selection of model',choices=['preactresnet','wideresnet'], type=str)
 parser.add_argument('--dataset', default='CIFAR10', help='Selection of dataset',choices=['CIFAR10','CIFAR100','tiny-imagenet'], type=str)
 parser.add_argument('--AGR', help='Whether to use AGR', action='store_true')
+parser.add_argument('--AGR_epoch', default= 155, help='AGR epoch', type=int)
 parser.add_argument('--method', default='AT', help='Selection of methods of adversarial training',choices=['trades','awp','AT','mart','Avmixup'], type=str)
 parser.add_argument('--gamma', default=0.01, help='Hyperparameter of the awp', type=float)
 parser.add_argument('--lr_proxy', default=0.01, help='Learning rate of proxy optim', type=float)
@@ -199,7 +200,7 @@ for i in range(args.epochs):
                 if cs <= 0 :
                     dot_product = torch.dot(g1, g2)
                     PV = (dot_product/(norm_g2**2)) * g2        
-                    if i >= 155 :
+                    if i >= args.AGR_epoch :
                         clip_grad_norm = clip_norm/torch.norm(g1-PV)
                         grad = (g1-PV) * torch.min(torch.ones_like(clip_grad_norm).to(device),clip_grad_norm)
                     else :
@@ -208,7 +209,7 @@ for i in range(args.epochs):
                     k += 1
                     
                 else:
-                    if i >= 155:
+                    if i >= args.AGR_epoch:
                         grad = (cs)*g2 + (1-cs)*g1
                         clip_grad_norm = clip_norm/torch.norm(grad)
                         grad = grad * torch.min(torch.ones_like(clip_grad_norm).to(device),clip_grad_norm)
