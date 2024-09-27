@@ -1,5 +1,5 @@
 # AGR
-Code for our ACM MM 2024 paper "**[Balancing Generalization and Robustness in Adversarial Training via Steering through Clean and Adversarial Gradient Directions](https://openreview.net/forum?id=UJmW3fVCJG)**". 
+Code for our ACM MM 2024 paper "**[Balancing Generalization and Robustness in Adversarial Training via Steering through Clean and Adversarial Gradient Directions](https://openreview.net/pdf?id=uBoKLl4ZS1)**". 
 
 ## Citation
 
